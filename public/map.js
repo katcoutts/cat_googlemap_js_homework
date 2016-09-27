@@ -12,7 +12,10 @@ var Map = function(container, coords, zoom){
   //   });
   // }
 
-  
+  this.moveToLocation = function(coords, note){
+     this.googleMap.setCenter(coords);
+     this.addMarker(coords, note);
+   };
 
   this.addMarker = function(coordinates, note) {
     var image = "http://icons.iconarchive.com/icons/fasticon/cat/32/Cat-Orange-icon.png";
@@ -39,39 +42,6 @@ var Map = function(container, coords, zoom){
     this.googleMap.setCenter( {lat: 41.8781, lng: -87.6298});
   }.bind(this);
  
-
- // NOT WORKING WHEN YOU HIT WHERE AM I BUTTON.
-
-  // this.moveToLocation = function(){
-  //   if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(function (position) {
-  //           var initialLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
-  //           console.log(initialLocation);
-  //           this.googleMap.setCenter(initialLocation);  
-  //       });
-  //   };
-  // }.bind(this);
-
- this.moveToLocation = function(){
-      if (navigator.geolocation) {
-
-          navigator.geolocation.getCurrentPosition(function (position) {
-
-              var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
-              console.log(pos);
-              var marker = new google.maps.Marker({map: this.googleMap, position: pos, clickable: true, animation: google.maps.Animation.DROP});
-              // Create a marker and center map on user location
-              this.googlemap.setCenter(pos);
-          });
-      }
-  
-  }.bind(this)
-
-  // this.moveToLocation = function(){
-  // navigator.geolocation.getCurrentPosition(function(position) {
-  //   this.googleMap.setCenter(position.coords.latitude, position.coords.longitude);
-  // });
-  // }.bind(this);
 
 }
 
